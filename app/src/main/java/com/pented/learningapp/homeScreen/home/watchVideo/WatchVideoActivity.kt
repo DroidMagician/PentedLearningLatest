@@ -608,6 +608,36 @@ class WatchVideoActivity : BaseActivity<ActivityWatchVideoBinding>() {
                         val videoId = youTubeId
                         val uiController = DefaultPlayerUiController(b.youTubePlayerView, youTubePlayer)
                         b.youTubePlayerView.setCustomPlayerUi(uiController.rootView)
+//                        uiController.showYouTubeButton(false)          // app:showYouTubeButton="false"
+////                        uiController.showSeekBar(false)          // app:showYouTubeButton="false"
+//                        uiController.showVideoTitle(false)          // app:showYouTubeButton="false"
+//                        uiController.enableLiveVideoUi(false)
+
+
+                        // Disable the default overlays and YouTube button
+//                        uiController.showYouTubeButton(false)
+//                        uiController.showVideoTitle(false)
+//                        uiController.showMenuButton(false)
+//                        uiController.showSeekBar(true) // or false, depending on your needs
+//                        uiController.showCurrentTime(false)
+//                        uiController.showDuration(false)
+//                        uiController.showUi(true)
+//                        uiController.showFullscreenButton(true)
+
+
+
+                        // Selectively show/hide elements
+                        uiController.showYouTubeButton(false)
+                        uiController.showVideoTitle(false)
+                        uiController.showMenuButton(false)
+                        uiController.showCurrentTime(false)
+                        uiController.showDuration(false)
+                        uiController.enableLiveVideoUi(false)
+
+                        // Keep only these visible
+                        uiController.showSeekBar(true)
+                        uiController.showFullscreenButton(true)
+
                         uiController.setFullscreenButtonClickListener(View.OnClickListener {
                             Log.e("Full screen", "Clicked ${Constants.ifFullScreen}")
                             if (Constants.ifFullScreen) {
@@ -759,7 +789,6 @@ class WatchVideoActivity : BaseActivity<ActivityWatchVideoBinding>() {
         {
             customeCountDownTimer?.resume()
         }
-
         else if(playerState == "PAUSED")
         {
             isFirstTimePaused = true
