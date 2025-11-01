@@ -7,6 +7,7 @@ import android.content.pm.PackageManager
 import android.content.pm.PackageManager.GET_META_DATA
 import android.net.ConnectivityManager
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -44,6 +45,8 @@ abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
         resetTitles()
         this.savedInstanceState = savedInstanceState
         binding = DataBindingUtil.setContentView<T>(this, layoutID())
+        Log.d("BaseActivity", "Current Activity: ${this::class.java.simpleName}")
+
         binding.lifecycleOwner = this
         binding.setVariable(BR.viewModel, viewModel())
 //        binding.setVariable(BR.handler, this)
@@ -128,6 +131,7 @@ abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
     }
 
 
+    @SuppressLint("GestureBackNavigation")
     override fun onBackPressed() {
         super.onBackPressed()
         overridePendingTransitionExit()

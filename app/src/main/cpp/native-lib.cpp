@@ -35,12 +35,12 @@ JNIEXPORT jstring
 JNICALL
 Java_com_pented_learningapp_myUtils_Keys_accessKey(JNIEnv *env, jobject object, jboolean isLive) {
     if (isLive) {
-//        std::string databaseName = "AKIAZEUBPEPZL4BEWOUK";
-        std::string databaseName = "ca576046c0863e0eTKUT";
+        std::string databaseName = "AKIAZEUBPEPZL4BEWOUK";
+//        std::string databaseName = "ca576046c0863e0eTKUT";
         return env->NewStringUTF(databaseName.c_str());
     } else {
-//        std::string databaseName = "AKIAZEUBPEPZL4BEWOUK";
-        std::string databaseName = "ca576046c0863e0eTKUT";
+        std::string databaseName = "AKIAZEUBPEPZL4BEWOUK";
+//        std::string databaseName = "ca576046c0863e0eTKUT";
         return env->NewStringUTF(databaseName.c_str());
     }
 }
@@ -51,12 +51,12 @@ JNIEXPORT jstring
 JNICALL
 Java_com_pented_learningapp_myUtils_Keys_secretKey(JNIEnv *env, jobject object, jboolean isLive) {
     if (isLive) {
-//        std::string databaseName = "UiL6O9p2QKO59tY2VavwMiFbcmc2EhVCju3ZpEcV";
-        std::string databaseName = "8Mpmi9z4H0bENWfS8NjYQo197223hbJsdXNp0Fxv";
+        std::string databaseName = "UiL6O9p2QKO59tY2VavwMiFbcmc2EhVCju3ZpEcV";
+//        std::string databaseName = "8Mpmi9z4H0bENWfS8NjYQo197223hbJsdXNp0Fxv";
         return env->NewStringUTF(databaseName.c_str());
     } else {
-//        std::string databaseName = "UiL6O9p2QKO59tY2VavwMiFbcmc2EhVCju3ZpEcV";
-        std::string databaseName = "8Mpmi9z4H0bENWfS8NjYQo197223hbJsdXNp0Fxv";
+        std::string databaseName = "UiL6O9p2QKO59tY2VavwMiFbcmc2EhVCju3ZpEcV";
+//        std::string databaseName = "8Mpmi9z4H0bENWfS8NjYQo197223hbJsdXNp0Fxv";
         return env->NewStringUTF(databaseName.c_str());
     }
 }

@@ -355,7 +355,7 @@ class LeaderBoardFragment: BaseFragment<FragmentLeaderbordBinding>() {
     }
     public fun setTopCandidates()
     {
-        b.recyclerViewBottom.adapter = BindingAdapter(
+        b.recyclerViewTop.adapter = BindingAdapter(
             layoutId = R.layout.row_top_candidates_api,
             br = BR.model,
             list = ArrayList(topUsersList),

@@ -22,6 +22,7 @@ import com.pented.learningapp.R
 import com.pented.learningapp.authScreens.viewModel.VerifyOTPVM
 import com.pented.learningapp.base.BaseActivity
 import com.pented.learningapp.databinding.ActivityGetStartedBinding
+import com.pented.learningapp.databinding.ActivityMainBinding
 import com.pented.learningapp.databinding.ActivityOtpactivityBinding
 import com.pented.learningapp.helper.Constants
 import com.pented.learningapp.helper.SharedPrefs
@@ -37,9 +38,12 @@ class OTPActivity : BaseActivity<ActivityOtpactivityBinding>() {
     override fun layoutID() = R.layout.activity_otpactivity
     lateinit var verifyOTPVM: VerifyOTPVM
     private val readPhoneStatePermissionCode = 3
-    private val b get() = BaseActivity.binding as ActivityOtpactivityBinding
+
+    private lateinit var b: ActivityOtpactivityBinding
+//    private val b get() = BaseActivity.binding as ActivityOtpactivityBinding
 
     override fun initActivity() {
+        b = binding as ActivityOtpactivityBinding
         init()
         observer()
         listener()
