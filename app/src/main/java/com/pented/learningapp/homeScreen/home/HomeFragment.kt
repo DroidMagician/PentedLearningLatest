@@ -525,7 +525,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                     FileName = it?.data?.ChampionBucket?.FileName ?: ""
                 );
 
-                Log.e("BannerImageUrl", "Is === ${BannerImageUrl}")
+                Log.e("BannerImageUrl", "Is === ${BannerImageUrl} ${homeVM.isPremiumUser} ${it.data.ShowToPremiumUsers}")
                 Log.e("ChampionImageUrl", "Is === ${ChampionImageUrl}")
                 if (homeVM.isPremiumUser && it.data.ShowToPremiumUsers == true) {
                     b.imageViewTopper.visibility = View.VISIBLE
@@ -535,7 +535,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                     b.imageViewTopper.visibility = View.VISIBLE
                     b.topperCard.visibility = View.VISIBLE
                 }
-
+                b.imageViewTopper.visibility = View.VISIBLE
+                b.topperCard.visibility = View.VISIBLE
                 Glide.with(requireActivity())
                     .load(BannerImageUrl).apply(RequestOptions().centerCrop())
                     .error(R.drawable.banner_placeholder)

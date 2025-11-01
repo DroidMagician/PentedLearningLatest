@@ -39,7 +39,6 @@ import com.pented.learningapp.authScreens.viewModel.RegisterVM
 import com.pented.learningapp.base.BaseActivity
 import com.pented.learningapp.base.BaseViewModel
 import com.pented.learningapp.databinding.ActivityMainBinding
-import com.pented.learningapp.databinding.ActivityWeekendTestSeriesBinding
 import com.pented.learningapp.enum.notificationTypes
 import com.pented.learningapp.helper.Constants
 import com.pented.learningapp.helper.JustCopyItVIewModel
@@ -57,19 +56,23 @@ import java.util.concurrent.TimeUnit
 import kotlin.math.roundToInt
 
 
-class MainActivity : BaseActivity<ActivityWeekendTestSeriesBinding>() {
+class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     override fun layoutID() = R.layout.activity_main
     val REQUEST_PERMISSION_SETTING = 101
     lateinit var receiver: MyReceiver
+    private lateinit var b: ActivityMainBinding
+
     override fun viewModel(): BaseViewModel = ViewModelProvider(this).get(JustCopyItVIewModel::class.java)
-    private lateinit var binding: ActivityMainBinding
+
+
     private lateinit var referrerClient: InstallReferrerClient
 
     lateinit var justCopyItVIewModel: JustCopyItVIewModel
     override fun initActivity() {
         Constants.count = 0
-        binding = ActivityMainBinding.inflate(layoutInflater)
+//        binding = ActivityMainb.inflate(layoutInflater)
+        b = binding as ActivityMainBinding
 
         justCopyItVIewModel = (getViewModel() as JustCopyItVIewModel)
         Constants.rateCount = 0
@@ -97,9 +100,9 @@ class MainActivity : BaseActivity<ActivityWeekendTestSeriesBinding>() {
             @Suppress("UnspecifiedRegisterReceiverFlag")
             registerReceiver(receiver, intentfilter)
         }
-            underlineSelectedItem(binding.rlBottom, R.id.item_home)
-        binding.bottomNavigationView.setOnNavigationItemSelectedListener { item ->
-                underlineSelectedItem(binding.rlBottom, item.itemId)
+            underlineSelectedItem(b.rlBottom, R.id.item_home)
+        b.bottomNavigationView.setOnItemSelectedListener  { item ->
+                underlineSelectedItem(b.rlBottom, item.itemId)
                 if(Constants.rateCount == 3)
                 {
                     if(loginObject?.date == null)
@@ -129,7 +132,7 @@ class MainActivity : BaseActivity<ActivityWeekendTestSeriesBinding>() {
                 when(item?.itemId)
                 {
                     R.id.item_home -> {
-                        binding.underline.visibility = View.VISIBLE
+                        b.underline.visibility = View.VISIBLE
                         Constants.rateCount = Constants.rateCount+1
                         setCurrentFragment(homeFragment)
                     }
@@ -140,7 +143,7 @@ class MainActivity : BaseActivity<ActivityWeekendTestSeriesBinding>() {
                             startActivity(ChooseYourSubscriptionActivity::class.java)
                         }else
                         {
-                            binding.underline.visibility = View.VISIBLE
+                            b.underline.visibility = View.VISIBLE
                             Constants.rateCount = Constants.rateCount+1
                             setCurrentFragment(subjectFragment)
                         }
@@ -154,7 +157,7 @@ class MainActivity : BaseActivity<ActivityWeekendTestSeriesBinding>() {
                         }
                         else
                         {
-                            binding.underline.visibility = View.GONE
+                            b.underline.visibility = View.GONE
                             Log.e("Item", "Scan Activity")
                             Dexter.withContext(this@MainActivity)
                                 .withPermission(Manifest.permission.CAMERA)
@@ -204,13 +207,13 @@ class MainActivity : BaseActivity<ActivityWeekendTestSeriesBinding>() {
                         }
                         else
                         {
-                            binding.underline.visibility = View.VISIBLE
+                            b.underline.visibility = View.VISIBLE
                             Constants.rateCount = Constants.rateCount+1
                             setCurrentFragment(testFragment)
                         }
                     }
                     R.id.item_leaderboard -> {
-                        binding.underline.visibility = View.VISIBLE
+                        b.underline.visibility = View.VISIBLE
                         Constants.rateCount = Constants.rateCount+1
                         setCurrentFragment(leaderBoardFragment)
                     }
@@ -265,14 +268,14 @@ class MainActivity : BaseActivity<ActivityWeekendTestSeriesBinding>() {
 
     @SuppressLint("GestureBackNavigation")
     override fun onBackPressed() {
-        if (binding.bottomNavigationView.selectedItemId == R.id.item_home)
+        if (b.bottomNavigationView.selectedItemId == R.id.item_home)
         {
             super.onBackPressed();
             finish();
         }
         else
         {
-            binding.bottomNavigationView.selectedItemId = R.id.item_home;
+            b.bottomNavigationView.selectedItemId = R.id.item_home;
         }
     }
     inner class MyReceiver(handler: Handler) : BroadcastReceiver() {
@@ -282,10 +285,10 @@ class MainActivity : BaseActivity<ActivityWeekendTestSeriesBinding>() {
             handler.post {
                 run {
                     if (intent?.action.equals(Constants.BACKPRESSED)){
-                        binding.bottomNavigationView?.selectedItemId = R.id.item_home;
+                        b.bottomNavigationView?.selectedItemId = R.id.item_home;
                     }
                     else  if (intent?.action.equals(Constants.GO_TO_LEADERBORARD)){
-                        binding.bottomNavigationView?.selectedItemId = R.id.item_leaderboard;
+                        b.bottomNavigationView?.selectedItemId = R.id.item_leaderboard;
                     }
                 }
             }

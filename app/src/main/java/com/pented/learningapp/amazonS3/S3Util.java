@@ -59,7 +59,6 @@ public class S3Util { // We only need one instance of the clients and credential
 //        }
 //        return sS3Client;
 //    }
-
     public static AmazonS3Client getS3Client() {
 
         if (sS3Client == null) {
@@ -70,27 +69,43 @@ public class S3Util { // We only need one instance of the clients and credential
             clientConfiguration.setMaxErrorRetry(MAX_RETRY);
 
 //            sS3Client = new AmazonS3Client(getCredProvider(context.getApplicationContext()));
-//            sS3Client = new AmazonS3Client(new BasicAWSCredentials(
-//                    Keys.INSTANCE.accessKey(true)
-//                    ,Keys.INSTANCE.secretKey(true)), Region.getRegion(Regions.fromName(Keys.INSTANCE.bucketRegion(true))), clientConfiguration);
-
             sS3Client = new AmazonS3Client(new BasicAWSCredentials(
                     Keys.INSTANCE.accessKey(true)
-                    ,Keys.INSTANCE.secretKey(true)), clientConfiguration);
-
+                    ,Keys.INSTANCE.secretKey(true)), Region.getRegion(Regions.fromName(Keys.INSTANCE.bucketRegion(true))), clientConfiguration);
         }
-        // 👇 Add your custom endpoint here
-        sS3Client.setEndpoint("https://s3.in-west2.purestore.io");
-
-        //https://s3.in-west2.purestore.io
-        // 👇 If PureStore requires path-style access
-        sS3Client.setS3ClientOptions(
-                S3ClientOptions.builder()
-                        .setPathStyleAccess(true)
-                        .build()
-        );
         return sS3Client;
     }
+//    public static AmazonS3Client getS3Client() {
+//
+//        if (sS3Client == null) {
+//
+//            ClientConfiguration clientConfiguration = new ClientConfiguration();
+//            clientConfiguration.withSocketTimeout(SOCKET_TIMEOUT);
+//            clientConfiguration.setConnectionTimeout(CONNECTION_TIMEOUT);
+//            clientConfiguration.setMaxErrorRetry(MAX_RETRY);
+//
+////            sS3Client = new AmazonS3Client(getCredProvider(context.getApplicationContext()));
+////            sS3Client = new AmazonS3Client(new BasicAWSCredentials(
+////                    Keys.INSTANCE.accessKey(true)
+////                    ,Keys.INSTANCE.secretKey(true)), Region.getRegion(Regions.fromName(Keys.INSTANCE.bucketRegion(true))), clientConfiguration);
+//
+//            sS3Client = new AmazonS3Client(new BasicAWSCredentials(
+//                    Keys.INSTANCE.accessKey(true)
+//                    ,Keys.INSTANCE.secretKey(true)), clientConfiguration);
+//
+//        }
+//        // 👇 Add your custom endpoint here
+//        sS3Client.setEndpoint("https://s3.in-west2.purestore.io");
+//
+//        //https://s3.in-west2.purestore.io
+//        // 👇 If PureStore requires path-style access
+//        sS3Client.setS3ClientOptions(
+//                S3ClientOptions.builder()
+//                        .setPathStyleAccess(true)
+//                        .build()
+//        );
+//        return sS3Client;
+//    }
     /**
      * Gets an instance of a S3 client which is constructed using the given
      * Context.
