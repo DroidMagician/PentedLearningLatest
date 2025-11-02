@@ -22,6 +22,7 @@ import com.pented.learningapp.authScreens.model.VerifyOTPResponseModel
 import com.pented.learningapp.base.BaseActivity
 import com.pented.learningapp.base.BaseViewModel
 import com.pented.learningapp.databinding.ActivityEditProfileBinding
+import com.pented.learningapp.databinding.ActivityOtpactivityBinding
 import com.pented.learningapp.databinding.ActivityYourSecurityQuestionBinding
 import com.pented.learningapp.helper.Constants
 import com.pented.learningapp.helper.SharedPrefs
@@ -39,7 +40,12 @@ class EditProfileActivity : BaseActivity<ActivityEditProfileBinding>() {
 
     lateinit var editProfileVM: EditProfileVM
     var isProfileDetailsExpand = false
-    private val b get() = BaseActivity.binding as ActivityEditProfileBinding
+//    private val b get() = BaseActivity.binding as ActivityEditProfileBinding
+
+    private lateinit var b: ActivityEditProfileBinding
+//    private val b get() = BaseActivity.binding as ActivityOtpactivityBinding
+
+//    override fun initActivity() {
 
     companion object {
         var studentProfile: VerifyOTPResponseModel.Data? = null
@@ -52,6 +58,7 @@ class EditProfileActivity : BaseActivity<ActivityEditProfileBinding>() {
 
     override fun viewModel(): BaseViewModel = ViewModelProvider(this).get(EditProfileVM::class.java)
     override fun initActivity() {
+        b = binding as ActivityEditProfileBinding
         init()
         observer()
         listner()
