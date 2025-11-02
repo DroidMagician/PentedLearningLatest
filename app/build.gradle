@@ -235,44 +235,56 @@ android {
         checkReleaseBuilds false
     }
     packagingOptions {
-//        jniLibs {
-////            useLegacyPackaging true
-//            pickFirsts += ['lib/x86/libc++_shared.so', 'lib/x86_64/libc++_shared.so', 'lib/armeabi-v7a/libc++_shared.so', 'lib/arm64-v8a/libc++_shared.so']
-//        }
-        exclude 'META-INF/LICENSE.txt'
-        exclude 'META-INF/NOTICE.txt'
-
-        // Ensure native libraries are properly aligned for 16 KB page sizes
         jniLibs {
-            useLegacyPackaging = false
+            useLegacyPackaging true
+            pickFirsts += ['**/*.so']
         }
-
-        // Additional exclusions for 16 KB compatibility
-        exclude 'META-INF/DEPENDENCIES'
-        exclude 'META-INF/LICENSE'
-        exclude 'META-INF/LICENSE.txt'
-        exclude 'META-INF/license.txt'
-        exclude 'META-INF/NOTICE'
-        exclude 'META-INF/NOTICE.txt'
-        exclude 'META-INF/notice.txt'
-        exclude 'META-INF/ASL2.0'
-        exclude 'META-INF/*.kotlin_module'
     }
+
+    packaging {
+        jniLibs {
+            useLegacyPackaging true
+        }
+    }
+//    packagingOptions {
+////        jniLibs {
+//////            useLegacyPackaging true
+////            pickFirsts += ['lib/x86/libc++_shared.so', 'lib/x86_64/libc++_shared.so', 'lib/armeabi-v7a/libc++_shared.so', 'lib/arm64-v8a/libc++_shared.so']
+////        }
+//        exclude 'META-INF/LICENSE.txt'
+//        exclude 'META-INF/NOTICE.txt'
+//
+//        // Ensure native libraries are properly aligned for 16 KB page sizes
+//        jniLibs {
+//            useLegacyPackaging = false
+//        }
+//
+//        // Additional exclusions for 16 KB compatibility
+//        exclude 'META-INF/DEPENDENCIES'
+//        exclude 'META-INF/LICENSE'
+//        exclude 'META-INF/LICENSE.txt'
+//        exclude 'META-INF/license.txt'
+//        exclude 'META-INF/NOTICE'
+//        exclude 'META-INF/NOTICE.txt'
+//        exclude 'META-INF/notice.txt'
+//        exclude 'META-INF/ASL2.0'
+//        exclude 'META-INF/*.kotlin_module'
+//    }
     externalNativeBuild {
         cmake {
             path "CMakeLists.txt"
         }
     }
 
-    packaging {
-//        jniLibs {
-//            // Prevent bundletool from repacking aligned .so files
-//            useLegacyPackaging true
+//    packaging {
+////        jniLibs {
+////            // Prevent bundletool from repacking aligned .so files
+////            useLegacyPackaging true
+////        }
+//        resources {
+//            excludes += ["META-INF/*"]
 //        }
-        resources {
-            excludes += ["META-INF/*"]
-        }
-    }
+//    }
 
     buildFeatures {
         prefab true
